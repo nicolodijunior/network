@@ -1,0 +1,377 @@
+/*
+
+Typography
+
+Font Size (px)
+
+For normal texts use font between 16px and 32 px
+Long text use 20px or bigger
+For big headlines, 50px +, bold 600+
+The smaller the text, the bigger the line height.
+The bigger the text, the smaller the line height
+
+
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+- Line heights
+Default: 1
+Small: 1.05
+Medium: 1.2
+Paragraph default: 1.6
+
+- Letter spacing
+-0.5px
+0.75px
+
+--- 02 COLORS
+
+- Primary: #1c7ed6
+- Tints:
+#228be6
+#339af0
+#a5d8ff
+#e7f5ff
+
+- Shades: 
+#d0ebff
+#e7f5ff
+
+- Accents:
+- Greys
+
+#888
+#767676 (lightest grey allowed on #fff)
+#6f6f6f (lightest grey allowed on #fdf2e9)
+#555
+#333
+
+--- 05 SHADOWS
+
+0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+
+--- 06 BORDER-RADIUS
+
+Default: 9px
+Medium: 11px
+
+--- 07 WHITESPACE
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+/* GENERAL */
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+    display:grid;
+    grid-template-columns: 1fr 250px 600px 1fr;
+    height: 100vh;
+}
+
+/* ASIDE */
+
+
+
+.navigation {
+    display:flex;
+    flex-direction: column;
+    gap:3.5rem;
+}
+
+aside button {
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-weight:bold;
+    display:inline-block;
+}
+
+
+
+.nav-title {
+    font-size: 2.5rem;
+}
+
+aside .logo-icon {
+    margin-top: 9rem;
+    font-size: 6rem;
+    color:#1c7ed6;
+    align-self: center;
+}
+
+aside .icon {
+    height:2.8rem;
+    width:2.8rem;
+}
+
+aside ul {
+    list-style:none;
+    display:flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-left: 3rem;
+}
+
+aside li {
+    font-size: 2.5rem;
+    display:flex;
+    gap:1.2rem;
+}
+
+.welcome{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.menu_option:link, .menu_option:visited{
+    text-decoration: none;
+    color:#555;
+}
+
+.menu_option:hover, .menu_option:active {
+    color:#567;
+}
+
+/* MAIN - CREATE POST */
+
+.content {
+    border: 0.1rem solid #e6ecf0;
+    min-width:fit-content;
+}
+
+main h1 {
+    padding:1rem;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.content_header{    
+    border-bottom: 0.1rem solid #e6ecf0;
+}
+
+.create_post {
+    border-bottom: 8px solid #e6ecf0;
+}
+
+.div_post_text {
+    display:flex;
+    gap:2rem;
+}
+
+.profile_img {
+    width:20%;
+    padding: 2rem;
+}
+
+.input_post_text {
+    width: 80%;
+    line-height: 2rem;
+    border:none;
+    outline: none;
+    font-size: 2rem;
+}
+
+.post_buttons{
+    display:flex;
+    align-items: center;
+    justify-content:end;
+    padding: 1rem;
+    gap:2rem;
+}
+
+.post_btn, .post_btn:link, .post_btn:visited {
+    padding:1rem 4rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    cursor:pointer;
+    border-radius: 9px;
+    text-decoration: none;
+    display:inline-block;
+    transition: all 0.3s;
+    border:none;
+    font-family: inherit;
+    background-color: #228be6;
+    color: #fff;
+}
+
+.post_btn:hover, .post_btn:active {
+    background-color: #e7f5ff;
+    color: #555;
+}
+
+/* MAIN - POST ELEMENT */
+
+.post_div {
+    font-size: 2rem;
+    line-height: 1.8;
+    line-height: 1.8;    
+    border-bottom: 0.1rem solid #e6ecf0;
+    padding: 1rem;
+}
+
+.content-body {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+.post_interactions{
+    display:flex;
+    justify-content:end;
+}
+
+.post_interactions button {
+    margin:1rem;
+    padding: 0.5rem 2rem;
+    background-color: #228be6;
+    font-weight: 500;
+}
+
+.post_interactions p {
+    padding: 0.5rem 2rem;
+}
+
+.profile_link:link, .profile_link:visited {
+    color:#339af0;
+    text-decoration: none;
+}
+
+.profile_link:hover, .profile_link:active {
+    color:#339af0;
+    text-decoration: none;
+}
+
+#edit_post_textarea{
+    background-color:#e7f5ff;
+    border: none;
+    list-style: 1.5;
+    width: 60%;
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.save_btn{
+    padding-left: 1rem; 
+    padding-right: 1rem; 
+    margin-left: 2rem;
+}
+
+.div_pagination {
+    font-size: 2rem;
+    padding: 1rem;
+    display: flex;
+    gap:1rem;
+    margin-bottom: 2rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.page-link:link, .page-link:visited {
+    text-decoration: none;
+    color:#567;
+}
+.page-link:hover, .page-link:active {
+    text-decoration: none;
+    color:#567;
+}
+
+/* MAIN - PROFILE ELEMENT */
+.profile_info {
+    font-size: 2rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_info_stats {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap:0.7rem;
+}
+
+.follow {
+    padding: 0.5rem;
+    width: auto;
+}
+
+
+/* GENERAL FORM */
+
+.login_area {
+    width: auto;
+    margin-top: 9rem;
+    border-left: 0.1rem solid #e6ecf0;
+    border-right: 0.1rem solid #e6ecf0;
+}
+
+.log {
+    text-align: center;
+    line-height: 1.2rem;
+    margin-bottom: 2rem;
+    padding:2rem;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:1fr 1fr;
+    grid-gap:1rem;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-outer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    font-size: 2rem;
+}
+
+.submit {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form_footer {
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 1.05;
+}
+
+.log_info{
+    border-radius:9px;
+    padding:1.2rem;
+    font-size:1.8rem;
+    font-family: inherit;
+    border:none;
+    background-color: #e7f5ff;
+    
+}
+
+
+
+

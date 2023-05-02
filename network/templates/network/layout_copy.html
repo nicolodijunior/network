@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}CS 50cial Network{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body>
+        <div></div>
+        <div class="menu">
+            <div class="user_info">
+                <!-- aqui colocar o div option abaixo, colocar formatação especial-->
+            </div>
+            
+            {% if user.is_authenticated %}
+                <div class="option" >  
+                    {% if not profile %}              
+                        <a href="#"><h4><div id="username_field">{{user.username}}</div></h4></a>
+                    {% else %}
+                        <a href="#"><h4><div id="username_field">{{profile_username}}</div></h4></a>
+                    {% endif %}
+                    </div>
+            {% if profile %}
+                <div class="option"><br>             
+                    followers <div id="followers">{{followers}} </div>
+                    following  <div id="following">{{following}} </div>                        
+                </div>
+            {% endif %}
+            {% if profile %}
+            <div class="option">
+                {% if follows %}
+                    <button id="tof" class="post_button" data-f="{{profile_username}}">Unfollow</button>
+                {% else %}
+                    <button id="tof" class="post_button" data-f="{{profile_username}}">Follow</button>
+                {% endif %}   
+            </div>
+            {% endif %}
+            {% endif %}
+            
+            <div class="option">
+                <span class="material-symbols-outlined">density_small</span>
+                <a href="{% url 'index' %}"><h4>All Posts</h4></a>
+            </div>            
+            {% if user.is_authenticated %}
+            <div class="option">
+                <span class="material-symbols-outlined">follow_the_signs</span>
+                <a href="{% url 'following_page' %}"><h4>Following</h4></a>
+            </div>
+            {% endif %}
+            <div class="option">
+                {% if user.is_authenticated %}
+                <span class="material-symbols-outlined">logout</span>
+                <a href="{% url 'logout' %}"><h4>Logout</h4></a>               
+                {% else %}                    
+                    <span class="material-symbols-outlined">login</span>
+                    <a href="{% url 'login' %}"><h4>Login</h4></a>
+                {% endif %}            </div>           
+            
+                                       
+        </div>        
+        <!--
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Network</a>
+          
+            <div>
+              <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><strong>{{ user.username }}</strong></a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'index' %}">All Posts</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Following</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+        
+        
+        -->
+        <div id="posts" class="posts">
+            {% block body %}
+            {% endblock %}
+        
+        </div>
+    </body>
+</html>

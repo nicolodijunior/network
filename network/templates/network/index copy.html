@@ -1,0 +1,67 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+    <main class="content">
+        <div class="content_header">
+            <h1>HEADER</h1>
+        </div>
+               <!--  {% if user.is_authenticated and home %}
+                Welcome {{user}}, check {% endif %} Posts
+                {% if profile %} from {{profile_username}}{% endif %} -->            
+        
+        {% if user.is_authenticated and show_new %}
+        <div class="create_post">
+            <form action="/posts" method="POST">
+                {% csrf_token %}
+                <div class="div_post_text">
+                    <img class = "profile_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu51XqkERN4KCU2HF526phPswwmMY9qjexFA&usqp=CAU" alt="profile image">
+                    <input class="input_post_text" name="text" type="text" placeholder="What's new ?">
+                </div>
+                <div class="post_buttons">  
+                    <p>Posting as @{{p.user.username}}</p>                  
+                    <button type="submit" class="post_btn">Post!</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        <div class="content-body">
+            {% for p in posts %}   
+                <div class="post_div" id="{{post.id}}">
+                    <div class="post_details" id={{p.user.username}}>
+                        <p><a href="/profile/{{p.user.username}}">@{{p.user.username}} </a> on {{p.datetime}}</p>                
+                    </div>
+                    <div id="where_text_goes_{{p.id}}" class="post_text">
+                        <p>{{p.text}}</p>                            
+                    </div>
+                    <div class="post_interactions">                            
+                        {% if p.user.username == request.user.username%}
+                            <span class="material-symbols-outlined">
+                                <button id="edit" data-postid="{{p.id}}">edit</button>
+                            </span>  
+                        {% endif %}                          
+                        <p>This post has {{p.likes.count}} likes</p>
+                    </div>
+                </div>        
+            {% endfor %}
+            <div class="pagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if posts.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+                        {% endif %}
+                        <li class="page-item"><a class="page-link" href="#">Page {{ posts.number }} of {{ posts.paginator.num_pages }}.</a> </li>
+                        {% if posts.has_next %}
+                            <li class="page-item"> <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+                            <li class="page-item"> <a class="page-link" href="?page={{ posts.paginator.num_pages }}">Last</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+     </div>
+    </main>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'network/posts.js' %}"></script>
+{% endblock %}
