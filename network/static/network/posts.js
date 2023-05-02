@@ -41,17 +41,16 @@ function profile_info(username){
         localStorage.clear();
         console.log("Followers: "+data.infos[1]);
         console.log("Following: "+data.infos[0]);
-        console.log("Follows:"+data.follows)
         document.querySelector("#followers").innerHTML = "Followers: "+data.infos[1];
         document.querySelector("#following").innerHTML = "Following: "+data.infos[0];
         follows = data.follows
         if (follows) {
-            console.log("Follows true");
-            document.querySelector("#tof").innerText = "Follow";
+            console.log("Follows True");
+            document.querySelector("#tof").innerText = "Unfollow";
         }
         else {
             console.log("Follows False");
-            document.querySelector("#tof").innerText = "Unfollow";
+            document.querySelector("#tof").innerText = "Follow";
         }
         
         //else 
@@ -65,11 +64,14 @@ function update_follow_stats(username){
 
     fetch(`/update_follow_stats/${username}`)
     .then(response => response.text())
-    .then(text => console.log(text));
-    localStorage.clear();
-    setTimeout(profile_info(username),500);
-
-    return false;
+    .then(text => {
+        console.log(text);
+        return Promise.resolve();
+    })
+    .then(() => {
+        console.log("Complete");
+        profile_info(username);
+    });
 }
 
 function load_edit_field(post_id){
