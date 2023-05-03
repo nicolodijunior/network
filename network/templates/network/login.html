@@ -1,14 +1,14 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-<div class="login_area">
+<div class="log_area">
     <h1 class="log">Login CS 50cial Media</h1>
     {% if message %}
         <div>{{ message }}</div>
     {% endif %}
         <form class="log_form" action="{% url 'login' %}" method="post">
             <div class="form-outer">
-            {% csrf_token %}
+                {% csrf_token %}
                 <div class="form-container">
                     <label for="username">Username </label>
                     <input autofocus class="log_info" type="text" name="username" id="username" placeholder="Username">
