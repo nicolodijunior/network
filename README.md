@@ -30,7 +30,7 @@ The social network allows registered users to create posts, follow other users, 
     python manage.py runserver
 
     5. Open the application 
-    In a browser, visti http://127.0.0.1:8000/
+    In a browser, visit http://127.0.0.1:8000/
 
 #### File structure
 
