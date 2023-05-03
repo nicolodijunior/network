@@ -16,20 +16,20 @@ The social network allows registered users to create posts, follow other users, 
 
 #### How to run the project
 
-    ######## 1. Clone the repository
+    1. Clone the repository
     git clone https://github.com/<username>/cs50w-network.git
 
-    ######## 2. Navigate to the project directory
+    2. Navigate to the project directory
     cd cs50w-network
 
-    ######## 3. Create database tables
+    3. Create database tables
     python manage.py makemigrations
     python manage.py migrate
     
-    ######## 4. Run the server
+    4. Run the server
     python manage.py runserver
 
-    ######## 5. Open the application 
+    5. Open the application 
     In a browser, visti http://127.0.0.1:8000/
 
 #### File structure
