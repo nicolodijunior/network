@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     })
 
-    document.querySelectorAll('#like').forEach(function(button) {
+    document.querySelectorAll('.like_button').forEach(function(button) {
         button.onclick = function (){
             post_id = button.dataset.postid;
             like_post(post_id);
@@ -27,11 +27,34 @@ document.addEventListener('DOMContentLoaded', function(){
 })
 
 function like_post(post_id){
-    //console.log("You want to like post "+post_id);
     fetch(`/like/${post_id}`)
     .then(response => response.json())
-    .console.log(response)
+    .then(data => {
+        console.log(data.post_id); 
+        console.log(data.liked);
+        console.log(data.likes_qty); 
+        return Promise.resolve();
+    })
+    .then(() => update_post(post_id))
     .catch(error => console.log('Error: ',error));
+}
+
+function update_post(post_id){
+    fetch(`/update_post/${post_id}`)
+    .then(response => response.json())
+    .then(data => {
+            console.log(data.liked);
+            console.log(data.likes_qty);
+            document.querySelector(`#likes_${post_id}`).textContent = "This post has "+data.likes_qty+" likes";
+            if(!data.liked){
+                document.querySelector(`#like_${post_id}`).style.background = "#228be6";
+            }
+            else {
+                document.querySelector(`#like_${post_id}`).style.background = "#a5d8ff";
+            }
+        })
+    .catch(error => console.log('Error: ',error));
+
 }
 
 function profile_info(username){

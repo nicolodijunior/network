@@ -33,17 +33,37 @@ def index(request):
 
 @login_required
 def like_post(request, post_id):
-    
-    return JsonResponse({"status": "Nothing happened"})  
+    liked = False
+    p = Post.objects.get(id=post_id)
+    user = request.user
+    if p in user.user_liked_posts.all(): 
+        user.user_liked_posts.remove(p)
+        liked=False
+    else:
+        user.user_liked_posts.add(p)
+        liked=True
+    likes_qty = p.likes.count()
+
+    return JsonResponse({
+        "post_id": post_id,
+        "liked": liked,
+        "likes_qty": likes_qty,
+    })
     #retornar Json Response atualizando se existe ou não like no post
     
-    
+def check_updated_post(request, post_id):
 
-    #check if user liked this post
-        #if likes, dislike
-        #if not, like
-        #return like or dislike
+    p = Post.objects.get(id=post_id)
+    user = request.user
+    liked = True
+    if p not in user.user_liked_posts.all(): 
+        liked=False
+    likes_qty = p.likes.count()
 
+    return JsonResponse({
+        "liked": liked,
+        "likes_qty": likes_qty,
+    })
 
 @login_required
 def following_page(request):
