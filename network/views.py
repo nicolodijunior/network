@@ -26,9 +26,6 @@ def index(request):
     return render(request, "network/index.html", {
         "posts": posts,
         "show_new":True,
-        #home true actually meands All_posts true, 
-        #and here followers and following are not loaded
-        #so they should not appear
     })
 
 @login_required
@@ -71,11 +68,6 @@ def following_page(request):
     user = request.user
     user_profile = user.user_profile.first()
     users_followed = user_profile.following.all()
-    #posts = Post.objects.filter(user__in=users_followed)
-    #posts = posts.order_by("-datetime")
-    #posts = user.user_posts.all
-    #for u in users_followed:
-    #posts += u.user_posts.all().order_by("-datetime")
     p = Paginator(Post.objects.filter(user__in=users_followed).order_by("-datetime"), 10)
     page = request.GET.get("page")
     posts = p.get_page(page)
@@ -118,24 +110,14 @@ def load_profile(request, username):
     for p in profiles_following_user_profile:
         count +=1
         names += "+ "+ p.user.username
-        # verificando em todos os seguidores do perfil, se um dos seguidores
-        #is the logged user
         if logged_username == p.user.username:
             follows = True
 
     followers = count
-
-    #check if user online follows visited profile
     
     p = Paginator(profile_user.user_posts.all().order_by("-datetime"),10)
     page = request.GET.get("page")
     posts = p.get_page(page)
-    """
-    p = Paginator(Post.objects.all().order_by("-datetime"), 10)
-    page = request.GET.get('page')
-    posts = p.get_page(page)
-
-    """
 
     return render(request, "network/index.html", {
         "profile_username": profile_username,
@@ -167,17 +149,10 @@ def update_follow_stats(request, username):
         ok = "Cai no true"
     else:
         logged_user_profile.following.add(user_to_check)
-        ok = "Cai no false"
-
-    
-    #significa que o usuário logado não segue o usuário informado, deve seguir a partir de agora
+        ok = "Cai no false"    
     
 
     return HttpResponse(ok)
-    #caso contrário, seguir
-
-    #devolver sem fazer nada, só atualizar e dar código de sucesso
-
 @login_required
 def check_if_follows(request, username):
 
@@ -187,10 +162,7 @@ def check_if_follows(request, username):
     profiles_following_user = user.followers.all()
 
     for p in profiles_following_user:
-        #count +=1
-        #names += "+ "+ p.user.username
-        # verificando em todos os seguidores do perfil, se um dos seguidores
-        #is the logged user
+       
         if logged_user == p.user.username:
             return True
     
@@ -200,7 +172,6 @@ def check_if_follows(request, username):
 def profile_info(request, username):    
     follows = False
     logged_user_username = request.user.username
-    # loading logged user information
     visited_user = User.objects.get(username=username)
     visited_user_profile = visited_user.user_profile.first()
     following = visited_user_profile.following.count()
@@ -212,8 +183,7 @@ def profile_info(request, username):
     for p in profiles_following_user:
         count +=1
         names += "+ "+ p.user.username
-        # verificando em todos os seguidores do perfil, se um dos seguidores
-        #is the logged user
+      
         if logged_user_username == p.user.username:
             follows = True
 
@@ -224,47 +194,6 @@ def profile_info(request, username):
         "infos": infos,
         "follows": follows,
     })
-
-"""
-def profile(request):
-    user = request.user
-    if not request.user_is_authenticated:
-        return render(request, "network/index.html", )
-
-    profiles_following_user = user.followed_by_user.all()
-    user_profile = user.user_profile.all()
-    user_profile = user_profile.first()
-    profiles_user_follow = user_profile.following.all()
-
-    # LOADING FOLLOWERS AND FOLLOWING
-
-    count_b = 0
-    #names_b = ""
-    for p in profiles_user_follow:
-        count_b += 1
-        #names_b += "+ "+p.user.username
-
-    count = 0
-
-    nomes = ""
-
-    for p in profiles_following_user:
-        count +=1
-        nomes += "+ "+ p.user.username
-
-    # LOADING POSTS
-
-    user_posts = user.user_posts.all()
-
-    return render(request, "network/index.html", {
-        "number_of_following": count,
-        "users_followed": nomes,
-        "number_of_profle_user_follows": count_b,
-        "user_posts": user_posts,
-    })
-    
-
-"""
 
 def login_view(request):
     if request.method == "POST":
@@ -319,22 +248,7 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "network/register.html")
-"""
-def load_posts(request, wposts):
-    
-    if wposts == "allposts":
-        posts = Post.objects.all()
-        user = User.objects.get(username="nicolodi")
-        posts = posts
-    #elif wposts == "nicolodi":
-        #user = User.objects.get(username=wposts)
-        #posts = user.user_posts
-    else:
-        return JsonResponse({"error":"Invalid mailbox."}, status=400)
 
-    posts = posts.order_by("-datetime").all()
-    return JsonResponse([post.serialize() for post in posts], safe=False)
-"""
 def new_post(request):
 
     if request.method == "POST":
