@@ -1,35 +1,31 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-<div class="register_area">
+<div class="log_area">
+    <h1 class="log">Register</h1>
     {% if message %}
         <div>{{ message }}</div>
     {% endif %}
-    <div class="register_header">
-        <h2>Register</h2>
-    </div>
-    <div class="register_form">        
-        <div class="form">
-            <form action="{% url 'register' %}" method="post">
+        <form action="{% url 'register' %}" method="post" class="log_form">
+            <div class="form-outer">
                 {% csrf_token %}
-                <div class="form-group">
-                    <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+                <div class="form-container">
+                    <label for="username">Username</label>
+                    <input class="log_info" autofocus type="text" name="username" placeholder="Username">
+                    <label for="username">Email</label>
+                    <input class="log_info" type="email" name="email" placeholder="Email Address">
+                    <label for="username">Password</label>
+                    <input class="log_info" type="password" name="password" placeholder="Password">
+                    <label for="username">Confirm </label>
+                    <input class="log_info" type="password" name="confirmation" placeholder="Confirm Password">
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="email" name="email" placeholder="Email Address">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
-                </div>
-                <input class="btn btn-primary" type="submit" value="Register">
-            </form>
-        </div>
-        <div class="form_footer">
-            Already have an account? <a href="{% url 'login' %}">Log In here.</a>
-        </div>
+            </div>
+                <div class="submit">  
+                    <input class="post_btn" type="submit" value="Register">
+                </div> 
+        </form>
+    <div class="form_footer">
+        Already have an account? <a class="profile_link" href="{% url 'login' %}">Log In here.</a>
     </div>
 </div>
 {% endblock %}
