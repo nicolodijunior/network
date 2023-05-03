@@ -58,9 +58,9 @@
                             </span>  
                         {% endif %} 
                         <span class="material-symbols-outlined">
-                            <button id="like" data-postid="{{p.id}}" class="post_btn">favorite</button>
+                            <button id="like_{{p.id}}" data-postid="{{p.id}}" class="post_btn like_button">favorite</button>
                         </span>                         
-                        <p>This post has {{p.likes.count}} likes</p>
+                        <p id="likes_{{p.id}}">This post has {{p.likes.count}} likes</p>
                     </div>
                 </div>        
             {% endfor %}

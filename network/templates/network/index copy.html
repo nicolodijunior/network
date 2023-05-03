@@ -39,7 +39,7 @@
                                 <button id="edit" data-postid="{{p.id}}">edit</button>
                             </span>  
                         {% endif %}                          
-                        <p>This post has {{p.likes.count}} likes</p>
+                        <p id="#likes_{{p.id}}">This post has {{p.likes.count}} likes</p>
                     </div>
                 </div>        
             {% endfor %}
