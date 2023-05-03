@@ -36,27 +36,6 @@ The social network allows registered users to create posts, follow other users, 
 
 The project has a file structure similar to the Django Project structure:
 
-.
-├── network
-│   ├── admin.py
-│   ├── apps.py
-│   ├── forms.py
-│   ├── models.py
-│   ├── static
-│   ├── templates
-│   │   └── network
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-├── project4
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── manage.py
-├── README.md
-└── requirements.txt
-
     network/: This directory contains the code for the social network application.
     network/static/: This directory contains the static files for the project, such as CSS and JavaScript files.
     network/templates/: This directory contains the HTML templates for the project.
