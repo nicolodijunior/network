@@ -16,6 +16,9 @@ The social network allows registered users to create posts, follow other users, 
 
 #### How to run the project
 
+    0. Install Django
+    run pip3 install Django in your terminal to install Django (you’ll also have to install pip)
+    
     1. Clone the repository
     git clone https://github.com/<username>/cs50w-network.git
 
