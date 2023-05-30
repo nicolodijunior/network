@@ -215,6 +215,10 @@ main h1 {
     color: #fff;
 }
 
+.dislike_btn {
+    background-color: #a5d8ff!important; 
+}
+
 .post_btn:hover, .post_btn:active {
     background-color: #e7f5ff;
     color: #555;

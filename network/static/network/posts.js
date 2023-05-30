@@ -47,10 +47,14 @@ function update_post(post_id){
             console.log(data.likes_qty);
             document.querySelector(`#likes_${post_id}`).textContent = "This post has "+data.likes_qty+" likes";
             if(!data.liked){
-                document.querySelector(`#like_${post_id}`).style.background = "#228be6";
+                if (document.querySelector(`#like_${post_id}`).classList.contains('dislike_btn')){
+                    document.querySelector(`#like_${post_id}`).classList.remove("dislike_btn");
+                }                
+//                document.querySelector(`#like_${post_id}`).style.background = "#228be6";
             }
             else {
-                document.querySelector(`#like_${post_id}`).style.background = "#a5d8ff";
+                document.querySelector(`#like_${post_id}`).classList.add("dislike_btn");
+                //document.querySelector(`#like_${post_id}`).style.background = "#a5d8ff";
             }
         })
     .catch(error => console.log('Error: ',error));
