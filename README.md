@@ -1,6 +1,6 @@
 # README
 
-This is a social network project for CS50 Web programming course. The project is developed using Django, SQ, HTML, CSS, and JavaScript.
+This is a social network project for CS50 Web programming course. The project is developed using Django, SQL, HTML, CSS, and JavaScript.
 
 #### Project Description
 
