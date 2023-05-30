@@ -1,6 +1,6 @@
 # README
 
-This is a social network project for CS50 Web programming course. The project is developed using Django, HTML, CSS, and JavaScript.
+This is a social network project for CS50 Web programming course. The project is developed using Django, SQ, HTML, CSS, and JavaScript.
 
 #### Project Description
 
@@ -13,6 +13,12 @@ The social network allows registered users to create posts, follow other users, 
     Implement pagination to display only 10 posts per page.
     Allow users to edit their posts using JavaScript.
     Ensure that it is not possible for a user to perform actions that are not allowed.
+    
+#### Project demonstration
+
+
+https://github.com/nicolodijunior/network/assets/101586266/828c3d7e-c19d-4e08-b746-f52cd1235dd8
+
 
 #### How to run the project
 
@@ -20,10 +26,10 @@ The social network allows registered users to create posts, follow other users, 
     run pip3 install Django in your terminal to install Django (you’ll also have to install pip)
     
     1. Clone the repository
-    git clone https://github.com/<username>/cs50w-network.git
+    git clone https://github.com/nicolodijunior/network.git
 
     2. Navigate to the project directory
-    cd cs50w-network
+    cd project4
 
     3. Create database tables
     python manage.py makemigrations
@@ -53,4 +59,4 @@ The project has a file structure similar to the Django Project structure:
 
 #### Additional notes
 
-    This was my frist project using javascript, django and css grid and flex. The project is developed using Django v3.2.8 and Python v3.9.7.
+    This was my frist project using javascript ajax. The project is developed using Django v3.2.8 and Python v3.9.7.
